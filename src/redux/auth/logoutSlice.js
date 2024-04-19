@@ -4,7 +4,7 @@ import axios from 'axios';
 export const logOut = createAsyncThunk('logout/fetch', async () => {
   const token = localStorage.getItem('token');
   try {
-    const response = await axios.delete('https://fast-lane-racers.onrender.com/logout', {
+    const response = await axios.delete('http://127.0.0.1:3000/logout', {
       headers: {
         'Content-Type': 'application/json',
         Authorization: token,

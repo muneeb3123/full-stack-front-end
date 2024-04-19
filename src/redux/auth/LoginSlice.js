@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const loginUser = createAsyncThunk('login/fetch', async (formData) => {
   try {
-    const response = await axios.post('https://fast-lane-racers.onrender.com/login', {
+    const response = await axios.post('http://127.0.0.1:3000/login', {
       user: formData,
     });
     localStorage.setItem('token', response.headers.authorization);
