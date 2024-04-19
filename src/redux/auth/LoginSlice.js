@@ -10,7 +10,7 @@ export const loginUser = createAsyncThunk('login/fetch', async (formData) => {
     return response.data;
   } catch (error) {
     if (error.response) {
-      throw error.response.data.message;
+      throw error.response.data;
     } else {
       return null;
     }
