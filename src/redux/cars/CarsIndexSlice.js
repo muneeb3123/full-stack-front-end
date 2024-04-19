@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const ALL_CARS_API = 'https://fast-lane-racers.onrender.com/cars';
+const ALL_CARS_API = 'https://fast-lane-racers-back-end-1.onrender.com/cars';
 
 export const deleteCar = createAsyncThunk('car/deleteCar', async (id) => {
   const token = localStorage.getItem('token');

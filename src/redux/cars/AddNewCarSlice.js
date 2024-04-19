@@ -12,7 +12,7 @@ const initialState = {
 export const createNewCar = createAsyncThunk('cars/createNewCar', async (carData) => {
   const token = localStorage.getItem('token');
   try {
-    const response = await axios.post('https://fast-lane-racers.onrender.com/cars', carData, {
+    const response = await axios.post('https://fast-lane-racers-back-end-1.onrender.com/cars', carData, {
       headers: {
         Authorization: token,
       },
