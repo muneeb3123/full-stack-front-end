@@ -4,7 +4,7 @@ import axios from 'axios';
 export const currentUser = createAsyncThunk('current/fetch', async () => {
   const token = localStorage.getItem('token');
   try {
-    const response = await axios.get('http://127.0.0.1:3000/current_user', {
+    const response = await axios.get('https://fast-lane-racers-back-end-1.onrender.com/current_user', {
       headers: {
         Accept: 'application/json',
         Authorization: token,
