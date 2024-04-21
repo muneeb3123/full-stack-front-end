@@ -6,7 +6,7 @@ const ReservationItem = ({ reservation }) => (
       <div className="res-detail">
         <div className="d-flex spc-btw">
           <p>Model:</p>
-          <p>{reservation.car.name}</p>
+          <p>{reservation.name}</p>
         </div>
         <div className="d-flex spc-btw">
           <p>City:</p>
@@ -20,7 +20,7 @@ const ReservationItem = ({ reservation }) => (
     </div>
     <div className="">
       <div className="d-res-image w-100">
-        <img src={reservation.car.image} className="r-image" alt="img" />
+        <img src={reservation.image} className="r-image" alt="img" />
       </div>
     </div>
   </div>
