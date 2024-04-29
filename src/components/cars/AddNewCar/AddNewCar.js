@@ -46,17 +46,33 @@ const AddNewCar = () => {
     }));
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setCarData((prevData) => ({
+        ...prevData,
+        image: reader.result,
+      }));
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
   useEffect(() => {
     if (isUser) {
       if (user.role !== 'admin') {
         navigate('/cars');
-        toast.error('You are not login');
+        toast.error('You are not logged in as an admin');
       }
     } else {
       navigate('/cars');
-      toast.error('You are not admin');
+      toast.error('You are not logged in');
     }
-  });
+  }, [isUser, user.role, navigate]);
 
   return (
     <section className="add-new-car-page">
@@ -70,14 +86,14 @@ const AddNewCar = () => {
         <input type="text" name="duration" placeholder="Duration" onChange={handleChange} required />
         <input type="number" name="apr" placeholder="APR" step={0.01} onChange={handleChange} />
         <select id="color" name="color" required onChange={handleChange}>
-          <option value="" disabled selected>Select a color</option>
+          <option value="" disabled defaultValue>Select a color</option>
           <option value="color1">Color1</option>
           <option value="color2">Color2</option>
           <option value="color2">Color3</option>
           <option value="color2">Color4</option>
           <option value="color2">Color5</option>
         </select>
-        <input type="text" name="image" placeholder="Image Link" onChange={handleChange} />
+        <input type="file" name="image" accept="image/*" onChange={handleImageChange} />
         <textarea
           name="description"
           placeholder="Description"
