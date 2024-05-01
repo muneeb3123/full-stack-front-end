@@ -16,7 +16,7 @@ export const deleteCar = createAsyncThunk('car/deleteCar', async (id) => {
 
 export const fetchAllCars = createAsyncThunk('cars/fetchAllCars', async () => {
   const response = await axios.get(ALL_CARS_API);
-  const allCarsArrayResponse = response.data;
+  const allCarsArrayResponse = response.data.data;
   return allCarsArrayResponse;
 });
 

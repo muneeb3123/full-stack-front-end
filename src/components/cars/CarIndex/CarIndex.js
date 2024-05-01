@@ -46,11 +46,11 @@ const CarsIndex = () => {
               <div key={car.id}>
                 <SwiperSlide key={car.id}>
                   <CarCard
-                    name={car.name}
-                    description={car.description}
-                    image={car.image}
+                    name={car.attributes.name}
+                    description={car.attributes.description}
+                    image={car.attributes.image_url}
                     id={car.id}
-                    color={car.color}
+                    color={car.attributes.color}
                   />
                 </SwiperSlide>
               </div>
