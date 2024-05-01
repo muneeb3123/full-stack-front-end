@@ -10,17 +10,15 @@ export const fetchSpecificCar = createAsyncThunk('cars/fetchSpecificCar', async 
 
 const initialSpecificCarState = {
   specificCarArray: {},
-  isLoadingSpecificCarArray: false,
 };
 
 const specificCarSlice = createSlice({
   name: 'carShowSlice',
   initialState: initialSpecificCarState,
   extraReducers(builder) {
-    builder.addCase(fetchSpecificCar.fulfilled, (state, action) => ({
-      ...state,
-      specificCarArray: action.payload,
-    }));
+    builder.addCase(fetchSpecificCar.fulfilled, (state, action) => {
+      state.specificCarArray = action.payload;
+    });
   },
 });
 
