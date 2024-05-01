@@ -49,7 +49,7 @@ const CarsIndex = () => {
                     name={car.attributes.name}
                     description={car.attributes.description}
                     image={car.attributes.image_url}
-                    id={car.id}
+                    id={parseInt(car.id, 10)}
                     color={car.attributes.color}
                   />
                 </SwiperSlide>

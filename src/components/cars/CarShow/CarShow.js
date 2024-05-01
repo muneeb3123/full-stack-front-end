@@ -65,59 +65,61 @@ const CarShow = () => {
 
   return (
     <>
-      <main className="car-show-container" key={car.id}>
-        <section className="car-image-container">
-          <img src={car.attributes.image_url} alt={car.attributes.name} className="car-image" />
-        </section>
+      {car ? (
+        <main className="car-show-container" key={car.id}>
+          <section className="car-image-container">
+            <img src={car.attributes.image_url} alt={car.attributes.name} className="car-image" />
+          </section>
 
-        <section className="car-details-container">
-          <div className="car-name-container">
-            <h1 className="car-name">{car.attributes.name}</h1>
-            <p className="deposit-details">- $200 deposit upon any car purchase</p>
-          </div>
-          <div className="car-details-reserve">
-            <div className="purchase-details-container">
-              <div className="finance-fee-container">
-                <p className="finance-fee-text">Finance fee</p>
-                <p className="finance-fee-value">{car.attributes.finance_fee}</p>
+          <section className="car-details-container">
+            <div className="car-name-container">
+              <h1 className="car-name">{car.attributes.name}</h1>
+              <p className="deposit-details">- $200 deposit upon any car purchase</p>
+            </div>
+            <div className="car-details-reserve">
+              <div className="purchase-details-container">
+                <div className="finance-fee-container">
+                  <p className="finance-fee-text">Finance fee</p>
+                  <p className="finance-fee-value">{car.attributes.finance_fee}</p>
+                </div>
+
+                <div className="option-to-purchase-fee-container">
+                  <p className="option-to-purchase-fee-text">Option to purchase fee</p>
+                  <p className="option-to-purchase-fee-value">{car.attributes.option_to_purchase_fee}</p>
+                </div>
+
+                <div className="total-amount-payable-container">
+                  <p className="total-amount-payable-text">Total amount payable</p>
+                  <p className="total-amount-payable-value">{car.attributes.total_amount_payable}</p>
+                </div>
+
+                <div className="duration-container">
+                  <p className="duration-text">Duration</p>
+                  <p className="duration-value">{car.attributes.duration}</p>
+                </div>
               </div>
+              <div className="rigth-side-container">
+                <div className="apr-percentage-container">
+                  <strong>
+                    {car.attributes.apr}
+                    % APR&nbsp;
+                  </strong>
+                  Representative
+                </div>
 
-              <div className="option-to-purchase-fee-container">
-                <p className="option-to-purchase-fee-text">Option to purchase fee</p>
-                <p className="option-to-purchase-fee-value">{car.attributes.option_to_purchase_fee}</p>
-              </div>
-
-              <div className="total-amount-payable-container">
-                <p className="total-amount-payable-text">Total amount payable</p>
-                <p className="total-amount-payable-value">{car.attributes.total_amount_payable}</p>
-              </div>
-
-              <div className="duration-container">
-                <p className="duration-text">Duration</p>
-                <p className="duration-value">{car.attributes.duration}</p>
+                <div className="doughnut-chart-container">
+                  <Link to={`/cars/${car.id}/add/reservation`} className="reserve-btn">
+                    Reserve
+                    {' '}
+                    <img src={rowr} alt="row right" className="rowr" />
+                  </Link>
+                  <Doughnut className="doughnut-chart" data={data} />
+                </div>
               </div>
             </div>
-            <div className="rigth-side-container">
-              <div className="apr-percentage-container">
-                <strong>
-                  {car.attributes.apr}
-                  % APR&nbsp;
-                </strong>
-                Representative
-              </div>
-
-              <div className="doughnut-chart-container">
-                <Link to={`/cars/${car.id}/add/reservation`} className="reserve-btn">
-                  Reserve
-                  {' '}
-                  <img src={rowr} alt="row right" className="rowr" />
-                </Link>
-                <Doughnut className="doughnut-chart" data={data} />
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
+          </section>
+        </main>
+      ) : <div> No Car</div>}
     </>
   );
 };
