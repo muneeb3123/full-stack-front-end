@@ -10,21 +10,19 @@ const AddNewCar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [carData, setCarData] = useState({
-    name: '',
-    finance_fee: '',
-    option_to_purchase_fee: '',
-    total_amount_payable: '',
-    duration: '',
-    apr: '',
-    color: '',
-    image: '',
-    description: '',
-  });
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createNewCar(carData))
+    const formData = new FormData();
+    formData.append('car[name]', e.target.name.value);
+    formData.append('car[finance_fee]', e.target.finance_fee.value);
+    formData.append('car[option_to_purchase_fee]', e.target.option_to_purchase_fee.value);
+    formData.append('car[total_amount_payable]', e.target.total_amount_payable.value);
+    formData.append('car[duration]', e.target.duration.value);
+    formData.append('car[apr]', e.target.apr.value);
+    formData.append('car[color]', e.target.color.value);
+    formData.append('car[description]', e.target.description.value);
+    formData.append('car[image]', e.target.image.files[0]);
+    dispatch(createNewCar(formData))
       .then((action) => {
         if (action.payload.data) {
           toast.success(action.payload.message);
@@ -36,30 +34,6 @@ const AddNewCar = () => {
       .catch(() => {
         toast.error('There is an error in adding a new car');
       });
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setCarData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      setCarData((prevData) => ({
-        ...prevData,
-        image: reader.result,
-      }));
-    };
-
-    if (file) {
-      reader.readAsDataURL(file);
-    }
   };
 
   useEffect(() => {
@@ -79,13 +53,13 @@ const AddNewCar = () => {
       <h1 className="add-new-car-heading">Add New Car</h1>
 
       <form className="add-new-car-form" onSubmit={handleSubmit}>
-        <input type="text" name="name" placeholder="Name" onChange={handleChange} required />
-        <input type="number" name="finance_fee" placeholder="Finance Fee" onChange={handleChange} required />
-        <input type="number" name="option_to_purchase_fee" placeholder="Option To Purchase Fee" onChange={handleChange} required />
-        <input type="number" name="total_amount_payable" placeholder="Total Amount Payable" onChange={handleChange} required />
-        <input type="text" name="duration" placeholder="Duration" onChange={handleChange} required />
-        <input type="number" name="apr" placeholder="APR" step={0.01} onChange={handleChange} />
-        <select id="color" name="color" required onChange={handleChange}>
+        <input type="text" name="name" placeholder="Name" required />
+        <input type="number" name="finance_fee" placeholder="Finance Fee" required />
+        <input type="number" name="option_to_purchase_fee" placeholder="Option To Purchase Fee" required />
+        <input type="number" name="total_amount_payable" placeholder="Total Amount Payable" required />
+        <input type="text" name="duration" placeholder="Duration" required />
+        <input type="number" name="apr" placeholder="APR" step={0.01} />
+        <select id="color" name="color" required>
           <option value="" disabled defaultValue>Select a color</option>
           <option value="color1">Color1</option>
           <option value="color2">Color2</option>
@@ -93,12 +67,11 @@ const AddNewCar = () => {
           <option value="color2">Color4</option>
           <option value="color2">Color5</option>
         </select>
-        <input type="file" name="image" accept="image/*" onChange={handleImageChange} />
+        <input type="file" name="image" accept="image/*" />
         <textarea
           name="description"
           placeholder="Description"
           className="description"
-          onChange={handleChange}
           required
         />
         <button type="submit">Add New Car</button>
