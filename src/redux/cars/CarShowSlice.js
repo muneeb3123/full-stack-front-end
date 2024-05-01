@@ -9,7 +9,7 @@ export const fetchSpecificCar = createAsyncThunk('cars/fetchSpecificCar', async 
 });
 
 const initialSpecificCarState = {
-  specificCarArray: null,
+  specificCarArray: {},
   isLoadingSpecificCarArray: false,
 };
 

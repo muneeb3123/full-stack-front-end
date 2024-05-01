@@ -65,7 +65,7 @@ const CarShow = () => {
 
   return (
     <>
-      {car ? (
+      {Object.keys(car).length > 0 ? (
         <main className="car-show-container" key={car.id}>
           <section className="car-image-container">
             <img src={car.attributes.image_url} alt={car.attributes.name} className="car-image" />
