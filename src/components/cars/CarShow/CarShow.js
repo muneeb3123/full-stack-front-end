@@ -62,6 +62,7 @@ const CarShow = () => {
   }, [dispatch, carID]);
 
   const car = useSelector((store) => store.specificCarReducer.specificCarArray);
+  console.log(car);
 
   return (
     <>
