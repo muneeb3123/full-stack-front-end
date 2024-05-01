@@ -56,10 +56,10 @@ const CarDelete = () => {
           <div key={car.id}>
             <SwiperSlideDel>
               <CardDelete
-                name={car.name}
-                image={car.image}
+                name={car.attributes.name}
+                image={car.attributes.image_url}
                 id={car.id}
-                color={car.color}
+                color={car.attributes.color}
               />
             </SwiperSlideDel>
           </div>
